@@ -5,4 +5,4 @@ from django.db import models
 class Anime(models.Model):
     title = models.CharField(60)
     demography = models.CharField(30)
-    
+    genre = models.CharField(20)

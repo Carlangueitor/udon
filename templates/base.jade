@@ -1,0 +1,47 @@
+!!!
+html
+	head
+		title Udon - Comparte Anime
+		meta(charset='UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		link(rel='stylesheet', href='/static/bootstrap.min.css')
+		link(rel='stylesheet', href='/static/style.css')
+		link(rel='stylesheet', href='/static/bootstrap-responsive.min.css')
+	body
+		div.navbar.navbar-inverse.navbar-fixed-top
+			div.navbar-inner
+				div.container
+					a.brand(href='#') Udon
+					div.nav-collapse
+						form.navbar-search.pull-left
+							input(type='text', placeholder='Buscar').search-query
+						ul.nav.pull-right
+							if user.is_authenticated
+								li.userlink
+									a(href="#")
+										span {{ user.username }}
+							else
+								li
+									a(href='#') Registro
+								li.dropdown
+									a(href='#', data-toggle='dropdown').dropdown-toggle Entrar
+										b.caret
+									ul.dropdown-menu
+										li
+											form#loginform
+												span
+													input(type='text', placeholder='Usuario')
+												span
+													input(type='password', placeholder='Contraseña')
+												p
+													span
+														input(type='checkbox') 
+														|Recordarme
+													input(type='submit', value='Entrar').pull-right
+										li.divider
+										li
+											a(href='#') Registrarse
+		.container
+			block content
+		script(src='http://code.jquery.com/jquery-latest.js')
+		script(src='/static/bootstrap.js')

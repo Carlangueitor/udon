@@ -31,10 +31,7 @@ class Anime(models.Model):
     
     def __unicode__(self):
         return self.title
-    
-#    class Meta:
-#        abstract = True
-        
+      
 class Episode(models.Model):
     title = models.CharField(max_length=50)
     number = models.IntegerField()
@@ -75,7 +72,8 @@ class Bagde(models.Model):
 class CheckIn(models.Model):
     anime = models.ForeignKey(Anime)
     points = models.IntegerField()
-    comment = models.CharField(max_length=100)  
+    comment = models.CharField(max_length=100)
+    date = models.DateTimeField()
       
 class UserProfile(models.Model):
     user = models.OneToOneField(User)

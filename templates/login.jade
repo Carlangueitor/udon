@@ -1,17 +1,22 @@
 extends base
 
 block content
-	if form.errors
-		p Tu nombre de Usuario y/o Contraseña son incorrectos
-	- url django.contrib.auth.views.login as formaction
-	form(method='post', action=formaction)
-		- csrf_token
-		p
-			input(type='text', placeholder='Usuario', name='username', maxlength='30')#id_username
-		p
-			input(type='password', placeholder='Contraseña', name='password')#id_password
-		p
-			span
-				input(type='checkbox')
-				| Recordarme
-			input(type='submit', value='Entrar')
+    if form.errors
+        p Tu nombre de Usuario y/o Contraseña son incorrectos
+    - url django.contrib.auth.views.login as formaction
+    form(method='post', action=formaction).form-horizontal
+        - csrf_token
+        .control-group
+            .controls
+                input(type='text', placeholder='Usuario', name='username', maxlength='30')#id_username
+        .control-group
+            .controls
+                input(type='password', placeholder='Contraseña', name='password')#id_password
+        .control-group
+            .controls
+                label(for='remember')
+                    input(type='checkbox', name='remember')#remember
+                    |  Recordarme
+        .control-group
+            .controls
+                input(type='submit', value='Entrar').btn.btn-primary

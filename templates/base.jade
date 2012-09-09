@@ -1,49 +1,54 @@
 !!!
 html
-	head
-		title Udon - Comparte Anime
-		meta(charset='UTF-8')
-		meta(name='viewport', content='width=device-width, initial-scale=1.0')
-		link(rel='stylesheet', href='/static/bootstrap.min.css')
-		link(rel='stylesheet', href='/static/style.css')
-		link(rel='stylesheet', href='/static/bootstrap-responsive.min.css')
-	body
-		div.navbar.navbar-inverse.navbar-fixed-top
-			div.navbar-inner
-				div.container
-					a.brand(href!='{% url index %}') Udon
-					div.nav-collapse
-						form.navbar-search.pull-left
-							input(type='text', placeholder='Buscar').search-query
-						ul.nav.pull-right
-							if user.is_authenticated
-								li.userlink
-									a(href="#")
-										span {{ user.username }}
-							else
-								li
-									a(href='#') Registro
-								li.dropdown
-									a(href='#', data-toggle='dropdown').dropdown-toggle Entrar
-										b.caret
-									ul.dropdown-menu
-										li
-											- url django.contrib.auth.views.login as formaction
-											form(method='post', action=formaction)#loginform
-												- csrf_token
-												span
-													input(type='text', placeholder='Usuario', name='username', maxlength='30')#id_username
-												span
-													input(type='password', placeholder='Contraseña', name='password')#id_password
-												p
-													span
-														input(type='checkbox') 
-														|Recordarme
-													input(type='submit', value='Entrar').pull-right
-										li.divider
-										li
-											a(href='#') Registrarse
-		.container
-			block content
-		script(src='http://code.jquery.com/jquery-latest.js')
-		script(src='/static/bootstrap.js')
+    head
+        title Udon - Comparte Anime
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet', href='/static/bootstrap.min.css')
+        link(rel='stylesheet', href='/static/style.css')
+        link(rel='stylesheet', href='/static/bootstrap-responsive.min.css')
+    body
+        div.navbar.navbar-inverse.navbar-fixed-top
+            div.navbar-inner
+                div.container
+                    a.brand(href!='{% url index %}') Udon
+                    div.nav-collapse
+                        form.navbar-search.pull-left
+                            input(type='text', placeholder='Buscar').search-query
+                        ul.nav.pull-right
+                            if user.is_authenticated
+                                li.userlink
+                                    a(href="#")
+                                        span {{ user.username }}
+                            else
+                                li
+                                    a(href='#') Registro
+                                li.dropdown
+                                    a(href='#', data-toggle='dropdown').dropdown-toggle Entrar
+                                        b.caret
+                                    ul.dropdown-menu
+                                        li
+                                            - url django.contrib.auth.views.login as formaction
+                                            form(method='post', action=formaction).form-horizontal
+                                                - csrf_token
+                                                .control-group
+                                                    .controls
+                                                        input(type='text', placeholder='Usuario', name='username', maxlength='30')#id_username
+                                                .control-group
+                                                    .controls
+                                                        input(type='password', placeholder='Contraseña', name='password')#id_password
+                                                .control-group
+                                                    .controls
+                                                        label(for='remember')
+                                                            input(type='checkbox', name='remember')#remember
+                                                            |  Recordarme
+                                                .control-group
+                                                    .controls
+                                                        input(type='submit', value='Entrar').btn.btn-primary
+                                        li.divider
+                                        li
+                                            a(href='#') Registrarse
+        .container
+            block content
+        script(src='http://code.jquery.com/jquery-latest.js')
+        script(src='/static/bootstrap.js')
